@@ -25,9 +25,6 @@ dist-ssr
 *.sw?
 
 
-# Ignore specific UI files
-src/pages/ProductPage.jsx
-src/components/ui/Drawer.jsx
-src/components/ui/Hamburger.jsx
+
 
 
