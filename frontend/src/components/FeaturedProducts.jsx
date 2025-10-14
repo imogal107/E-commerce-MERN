@@ -35,10 +35,10 @@ const FeaturedProducts = ({ featuredProducts }) => {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <h2 className="text-center text-5xl sm:text-6xl font-bold text-cyan-400 my-10">
+        <h2 className="text-center text-5xl sm:text-6xl font-bold text-black my-10">
           Featured
         </h2>
-        <div className="relative">
+        <div className="relative bg-gray-400/10 backdrop-blur-2xl shadow-md shadow-gray/20 rounded-xl p-4 md:p-8">
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-300 ease-in-out"
@@ -53,7 +53,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                   key={product._id}
                   className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 flex-shrink-0 px-2"
                 >
-                  <div className="bg-cyan-1000/20 backdrop-blur-xl rounded-lg shadow-lg overflow-hidden h-full transition-all duration-300 hover:shadow-xl border border-cyan-500/30">
+                  <div className="backdrop-blur-xl rounded-lg shadow-lg overflow-hidden h-full transition-all duration-300 hover:shadow-xl border border-black/70">
                     <div className="overflow-hidden">
                       <img
                         src={product.image}
@@ -62,15 +62,15 @@ const FeaturedProducts = ({ featuredProducts }) => {
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="text-lg font-semibold mb-2 text-cyan-300">
+                      <h3 className="text-lg font-semibold mb-2 text-black">
                         {product.name}
                       </h3>
-                      <p className="text-cyan-300 font-medium mb-4">
+                      <p className="text-black font-medium mb-4">
                         ${product.price.toFixed(2)}
                       </p>
                       <button
                         onClick={() => addToCart(product)}
-                        className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center"
+                        className="w-full bg-black hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center"
                       >
                         <ShoppingCart className="w-5 h-5 mr-2" />
                         Add to Cart
@@ -87,7 +87,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
             className={`absolute top-1/2 -left-4 transform -translate-y-1/2 p-2 rounded-full transition-colors duration-300 ${
               isStartDisabled
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-cyan-600 hover:bg-cyan-500"
+                : "bg-black hover:bg-gray-900"
             }`}
           >
             <ChevronLeft className="w-6 h-6" />
@@ -99,7 +99,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
             className={`absolute top-1/2 -right-4 transform -translate-y-1/2 p-2 rounded-full transition-colors duration-300 ${
               isEndDisabled
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-cyan-600 hover:bg-cyan-500"
+                : "bg-black hover:bg-gray-900"
             }`}
           >
             <ChevronRight className="w-6 h-6" />

@@ -12,12 +12,12 @@ const CartPage = () => {
 
   return (
 	
-    <div className="py-8 md:py-16">
+    <div className="py-8 md:py-32">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
 			{cart.length > 0 && (
               <button
                 type="submit"
-                className="flex mt-1 mb-4 cursor-pointer text-cyan-400"
+                className="flex mt-1 mb-4 cursor-pointer text-red-500 hover:text-red-600"
                 onClick={() => clearCart()}
               >
                 Clear All

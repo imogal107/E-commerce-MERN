@@ -41,29 +41,29 @@ const AnalyticsTab = () => {
 					title='Total Users'
 					value={analyticsData.users.toLocaleString()}
 					icon={Users}
-					color='from-cyan-500 to-teal-700'
+					color='from-amber-300 to-amber-500'
 				/>
 				<AnalyticsCard
 					title='Total Products'
 					value={analyticsData.products.toLocaleString()}
 					icon={Package}
-					color='from-cyan-500 to-green-700'
+					color='from-amber-300 to-amber-500'
 				/>
 				<AnalyticsCard
 					title='Total Sales'
 					value={analyticsData.totalSales.toLocaleString()}
 					icon={ShoppingCart}
-					color='from-cyan-500 to-cyan-700'
+					color='from-amber-300 to-amber-500'
 				/>
 				<AnalyticsCard
 					title='Total Revenue'
 					value={`$${analyticsData.totalRevenue.toLocaleString()}`}
 					icon={DollarSign}
-					color='from-cyan-500 to-lime-700'
+					color='from-amber-300 to-amber-500'
 				/>
 			</div>
 			<motion.div
-				className='bg-gray-800/60 rounded-lg p-6 shadow-lg'
+				className='bg-gray-800/10 rounded-lg p-6 shadow-lg'
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5, delay: 0.25 }}
@@ -71,9 +71,9 @@ const AnalyticsTab = () => {
 				<ResponsiveContainer width='100%' height={400}>
 					<LineChart data={dailySalesData}>
 						<CartesianGrid strokeDasharray='3 3' stroke="#9CA3AF" vertical={true} horizontal={true} />
-						<XAxis dataKey='name' stroke='#9CA3AF' tick={{ fill: "#D1D5DB" }}/>
-						<YAxis yAxisId='left' stroke='#D1D5DB' />
-						<YAxis yAxisId='right' orientation='right'  stroke='#D1D5DB' domain={[0, 'dataMax + 5']} />
+						<XAxis dataKey='name' stroke='#000000' tick={{ fill: "#000000" }}/>
+						<YAxis yAxisId='left' stroke='#000000' />
+						<YAxis yAxisId='right' orientation='right'  stroke='#000000' />
 						<Tooltip />
 						<Legend />
 						<Line
@@ -103,19 +103,19 @@ export default AnalyticsTab;
 
 const AnalyticsCard = ({ title, value, icon: Icon, color }) => (
 	<motion.div
-		className={`bg-gray-800 rounded-lg p-6 shadow-lg overflow-hidden relative ${color}`}
+		className={`bg-amber-300 rounded-lg p-6 shadow-lg backdrop-blur-3xl overflow-hidden relative ${color}`}
 		initial={{ opacity: 0, y: 20 }}
 		animate={{ opacity: 1, y: 0 }}
 		transition={{ duration: 0.5 }}
 	>
-		<div className='flex justify-between items-center'>
+		<div className='flex justify-between items-center text-black'>
 			<div className='z-10'>
-				<p className='text-cyan-300 text-sm mb-1 font-semibold'>{title}</p>
-				<h3 className='text-white text-3xl font-bold'>{value}</h3>
+				<p className='text-sm mb-1 font-semibold'>{title}</p>
+				<h3 className=' text-3xl font-bold'>{value}</h3>
 			</div>
 		</div>
-		<div className='absolute inset-0 bg-gradient-to-br from-cyan-600 to-cyan-900 opacity-30' />
-		<div className='absolute -bottom-4 -right-4 text-cyan-800 opacity-50'>
+		<div className='absolute inset-0 bg-gradient-to-br from-amber-300 to-amber-500 opacity-10' />
+		<div className='absolute -bottom-4 -right-4 text-black opacity-30'>
 			<Icon className='h-32 w-32' />
 		</div>
 	</motion.div>

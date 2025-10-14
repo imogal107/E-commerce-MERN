@@ -19,11 +19,11 @@ const PageRoutes = () => {
  
   return (
       <>
-        <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
+        <div className="min-h-screen bg-white text-white relative overflow-hidden">
         {/* background gradient */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,rgba(77,218,249,0.2)_0%,rgba(10,80,60,0.2)_65%,rgba(0,0,0,0.1)_100%)]">
+        <div className="absolute overflow-hidden">
+          <div className="absolute">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full ">
             </div>
           </div>
         </div>
