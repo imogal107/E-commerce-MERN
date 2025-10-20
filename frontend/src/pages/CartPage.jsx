@@ -12,7 +12,7 @@ const CartPage = () => {
 
   return (
 	
-    <div className="py-8 md:py-32">
+    <div className="pt-8 pb-24 md:py-32">
       <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
 			{cart.length > 0 && (
               <button

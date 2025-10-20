@@ -46,8 +46,8 @@ const ProductCard = ({ product }) => {
           </p>
         </div>
         <button
-          className="flex items-center justify-center rounded-lg bg-amber-400 px-5 py-2.5 text-center text-sm font-medium
-					 text-white hover:bg-amber-500 focus:outline-none focus:ring-4 focus:ring-cyan-300"
+          className="flex items-center justify-center rounded-lg bg-amber-300 px-5 py-2.5 text-center text-sm font-medium
+					 text-white hover:bg-amber-400 focus:outline-none focus:ring-4 focus:ring-cyan-300"
           onClick={handleAddToCart}
         >
           <ShoppingCart size={22} className="mr-2" />

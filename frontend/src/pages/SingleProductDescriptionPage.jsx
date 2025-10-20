@@ -3,7 +3,7 @@ import ProductDescription from "../components/ProductDescription";
 import ProductReviewSection from "../components/ProductReviewSection";
 import AddToCartButton from "../components/ui/AddToCartButton";
 
-const ProductPage = () => {
+const SingleProductDescriptionPage = () => {
 
   const [showDescription,setShowDescription] = useState(true);
 
@@ -133,7 +133,7 @@ const ProductPage = () => {
         </div>
         ):(
           // reviewsSection
-     <div className="grid grid-cols-12 mr-2 md:mr-0 md:gap-2 row-span-9  w-full h-96 overflow-y-auto">
+     <div className="grid grid-cols-12 mr-2 md:mr-0 md:gap-2 row-span-9 w-full h-96 overflow-y-auto">
           {[1,2,3,4,5,6].map((i) => (
              <ProductReviewSection product={product} key={i} />
           ))}
@@ -144,4 +144,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default SingleProductDescriptionPage;

@@ -10,7 +10,7 @@ export default function Hamburger() {
 
   return (
     <Menu as="div" className="relative inline-block">
-      <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-cyan-400/80 p-2 text-sm font-semibold text-black shadow-xs">
+      <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-amber-300 p-2 text-sm font-semibold text-black shadow-xs">
         <MenuIcon/> 
       </MenuButton>
 
@@ -22,7 +22,7 @@ export default function Hamburger() {
           <MenuItem>
             <Link
               to={"/"}
-              className="block px-4 py-2 text-sm text-cyan-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
+              className="block px-4 py-2 text-sm text-amber-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
             >
               Home
             </Link>
@@ -30,7 +30,7 @@ export default function Hamburger() {
           {user && (<MenuItem>
             <Link
               to={"/cart"}
-              className="block px-4 py-2 text-sm text-cyan-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+              className="block px-4 py-2 text-sm text-amber-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
             >
              <ShoppingCart className="inline-block mr-1 h-5 w-5" />  Cart
             </Link>
@@ -38,7 +38,7 @@ export default function Hamburger() {
           {isAdmin &&(<MenuItem>
             <Link
               to={"/secret-dashboard"}
-              className="block px-4 py-2 text-sm text-cyan-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
+              className="block px-4 py-2 text-sm text-amber-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
             >
               <Lock className="inline-block mr-1" size={18} /> Dashboard
             </Link>
@@ -46,7 +46,7 @@ export default function Hamburger() {
             {user ? (<MenuItem>
               <button
                 type="submit"
-                className="block w-full px-4 py-2 text-left text-sm text-cyan-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
+                className="block w-full px-4 py-2 text-left text-sm text-amber-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
                 onClick={logout}
 
               >
@@ -57,10 +57,10 @@ export default function Hamburger() {
                <MenuItem>
             <Link
               to={"/signup"}
-              className="block px-4 py-2 text-sm text-cyan-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
+              className="block px-4 py-2 text-sm text-amber-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
             >
                <UserPlus
-                    className="inline-block mr-1 group hover:text-cyan-500"
+                    className="inline-block mr-1 group hover:text-amber-400/80"
                     size={18}
                   /> Signup
             </Link>
@@ -68,10 +68,10 @@ export default function Hamburger() {
           <MenuItem>
             <Link
               to={"/login"}
-              className="block px-4 py-2 text-sm text-cyan-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
+              className="block px-4 py-2 text-sm text-amber-300 drop-shadow-lg data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden "
             >
                <LogIn
-                    className="inline-block mr-1 group hover:text-cyan-500"
+                    className="inline-block mr-1 group hover:text-amber-400/80"
                     size={18}
                   /> Login
             </Link>

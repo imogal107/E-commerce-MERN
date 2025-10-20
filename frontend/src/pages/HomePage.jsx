@@ -1,47 +1,68 @@
-import { useEffect } from "react";
-import CategoryItem from "../components/CategoryItem";
-import FeaturedProducts from "../components/FeaturedProducts";
-import { useProductStore } from "../stores/useProductStore";
-
-const categories = [
-	{ href: "/jeans", name: "Jeans", imageUrl: "/jeans.jpg" },
-	{ href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
-	{ href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
-	{ href: "/glasses", name: "Glasses", imageUrl: "/glasses.png" },
-	{ href: "/jackets", name: "Jackets", imageUrl: "/jackets.jpg" },
-	{ href: "/suits", name: "Suits", imageUrl: "/suits.jpg" },
-	{ href: "/bags", name: "Bags", imageUrl: "/bags.jpg" },
-];  
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
-
-  const {fetchFeaturedProducts,products,loading } = useProductStore();
-  useEffect(() => {
-		fetchFeaturedProducts();
-	}, [fetchFeaturedProducts]);
-
   return (
-    <div className="relative min-h-screen  text-white overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h1 className="text-center text-5xl sm:text-6xl font-bold text-black mb-4 mt-20">
-            Explore Our Categories
-          </h1>
-          <p className="text-center text-lg md:text-xl text-gray-700 mb-12">
-            Discover the latest trends in eco-friendly fashion
-          </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-gray-400/10 backdrop-blur-2xl shadow-md shadow-gray/20 rounded-xl p-4 md:p-8">
-        {categories.map((category) => (
-          <CategoryItem 
-              category = {category}
-              key={category.name} />
-        ))}
-      </div>
-        {!loading && products.length > 0 && (
-            <FeaturedProducts featuredProducts = {products}/>
-        )}
-      </div>
-    </div>
-  )
-}
+    <div
+      className="relative w-full h-screen bg-cover bg-center flex flex-col justify-center items-center text-center text-white"
+      style={{
+        backgroundImage: `url("/coverpage-bg.jpg")`,
+        
+      }}
+    >
+      {/* Overlay for better contrast */}
+      <div className="absolute inset-0 bg-black/50"></div>
 
-export default HomePage
+      {/* Content */}
+      <motion.div
+        className="relative z-10 px-6 sm:px-10"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Main Title */}
+        <h1 className="text-4xl sm:text-6xl font-extrabold mb-4">
+          Discover Your Style
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-lg sm:text-xl text-gray-200 mb-8">
+          Premium Clothing for Every Occasion
+        </p>
+
+        {/* Shop Now Button */}
+        <button className="bg-amber-300 text-black font-semibold px-8 py-3 rounded-full hover:bg-amber-400 transition-all duration-300 shadow-lg">
+        <Link to="/allproducts">
+          Shop Now
+        </Link>
+        </button>
+
+        {/* Stats Section */}
+        <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6 text-gray-100">
+          <div className="text-center">
+            <p className="text-3xl font-bold text-amber-300">50+</p>
+            <p className="text-sm uppercase tracking-widest">Brands</p>
+          </div>
+
+          <div className="hidden sm:block h-10 w-px bg-gray-500"></div>
+
+          <div className="text-center">
+            <p className="text-3xl font-bold text-amber-300">1200+</p>
+            <p className="text-sm uppercase tracking-widest">Products</p>
+          </div>
+
+          <div className="hidden sm:block h-10 w-px bg-gray-500"></div>
+
+          <div className="text-center">
+            <p className="text-3xl font-bold text-amber-300">10K+</p>
+            <p className="text-sm uppercase tracking-widest">Reviews</p>
+          </div>
+        </div>
+      </motion.div>
+      
+    </div>
+  );
+};
+
+export default HomePage;

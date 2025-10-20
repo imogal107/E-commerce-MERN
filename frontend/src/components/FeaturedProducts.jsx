@@ -70,7 +70,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
                       </p>
                       <button
                         onClick={() => addToCart(product)}
-                        className="w-full bg-black hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center"
+                        className="w-full bg-amber-300 hover:bg-amber-400/80 text-black font-semibold py-2 px-4 rounded transition-colors duration-300 flex items-center justify-center"
                       >
                         <ShoppingCart className="w-5 h-5 mr-2" />
                         Add to Cart
