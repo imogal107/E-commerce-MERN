@@ -35,12 +35,11 @@ const DisplayAllProductsPage = () => {
     [loading, hasMore]
   );
 
-  // When products or sort changes, sort them locally or when search term changes
+  // runs when products or search term changes
     // 🔍 Fuse.js Search + Sorting (with 500ms debounce)
   useEffect(() => {
     const handler = setTimeout(() => {
       let updated = [...products];
-
       // 🧠 Fuzzy Search (only if user typed something)
       if (searchTerm.trim() !== "") {
         const fuse = new Fuse(products, {
@@ -51,7 +50,14 @@ const DisplayAllProductsPage = () => {
         const results = fuse.search(searchTerm).map((res) => res.item);
         updated = results;
       }
+      setFilteredProducts(updated);
+    }, 500);
 
+    return () => clearTimeout(handler);
+  }, [products, searchTerm]);
+
+  useEffect(() => {
+      let updated = [...products];
       // ⚙️ Sorting (instant)
       switch (sortOption) {
         case "priceLowHigh":
@@ -69,14 +75,9 @@ const DisplayAllProductsPage = () => {
         default:
           break;
       }
-
       setFilteredProducts(updated);
-    }, 500);
+  }, [products, sortOption]);
 
-    return () => clearTimeout(handler);
-  }, [products, sortOption, searchTerm]);
-
-  
 
   const handleResetFilters = () => {
     setSearchTerm("");

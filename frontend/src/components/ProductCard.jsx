@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }) => {
   const { user } = useUserStore();
   const { addToCart } = useCartStore();
+  console.log("Product Card" ,  product);
   const handleAddToCart = () => {
+    
     if (!user) {
       toast.error("Please login to add products to cart", { id: "login" });
       return;
@@ -18,12 +20,12 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="flex w-full relative flex-col overflow-hidden rounded-lg shadow-lg backdrop-blur-2xl">
+    <div className="flex w-full relative flex-col overflow-hidden rounded-lg shadow-lg backdrop-blur-2xl hover:scale-105">
       <Link to={`/product/${product._id}`}>
         <div className="relative  flex h-60 overflow-hidden rounded-t-lg">
           <img
             className="object-cover w-full"
-            src={product.image}
+            src={product.images.length > 0 ? product.images[0] : product.images}
             alt="product image"
           />
           <div className="absolute inset-0 bg-opacity-30" />

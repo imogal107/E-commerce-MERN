@@ -20,6 +20,11 @@ const Footer = () => {
                 Collection
               </a>
             </li>
+            <li>
+              <a href="/cart" className="hover:text-amber-300 transition">
+                Cart
+              </a>
+            </li>
           </ul>
         </div>
 

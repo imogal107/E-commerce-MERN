@@ -1,11 +1,18 @@
-import { useState } from "react";
+import {  useEffect, useState } from "react";
 import ProductDescription from "../components/ProductDescription";
 import ProductReviewSection from "../components/ProductReviewSection";
 import AddToCartButton from "../components/ui/AddToCartButton";
+import { useProductStore } from "../stores/useProductStore";
+import { useParams } from "react-router-dom";
 
 const SingleProductDescriptionPage = () => {
 
   const [showDescription,setShowDescription] = useState(true);
+  const {products, fetchAllProducts , loading  } = useProductStore();
+  const {id} = useParams()
+  useEffect(() => {
+    fetchAllProducts();
+  },[fetchAllProducts])
 
   const colorClasses = {
     Red: "bg-red-700",
@@ -14,17 +21,17 @@ const SingleProductDescriptionPage = () => {
     White: "bg-white",
     Green: "bg-green-700",
   };
-
-
-
-  const product = {
-    name: "Jack and Jones Mens T-shirt Regular Fit Casual Shirt",
-    price: 99.99,
-    reviews: 100,
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis et inventore deleniti veritatis mollitia neque veniam rerum tempora explicabo sequi? Quaerat iste nihil illum voluptatem repellendus at obcaecati aliquam quidem!",
-    image: ["/jackets.jpg", "/jeans.jpg", "/tshirts.jpg", "/suits.jpg"],
-  };
+  
+  const product = products.find((prod) => prod._id === id);
+  console.log(product);
+  
+   if (loading || !product) {
+    return (
+      <div className="min-h-screen flex justify-center items-center text-gray-500">
+        Loading product...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen text-white pt-20 sm:pt-24 flex flex-col justify-start items-center px-4 sm:px-6 md:px-10 ">
@@ -32,7 +39,7 @@ const SingleProductDescriptionPage = () => {
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-6 bg-gray-400/10 backdrop-blur-2xl shadow-md shadow-gray/20 rounded-xl p-4 md:p-8 mt-4 md:mt-8">
         {/* Thumbnail column */}
         <div className="flex md:flex-col justify-center items-center md:col-span-2 gap-2 overflow-x-auto md:overflow-y-auto">
-          {product.image.map((img, i) => (
+          {product?.images?.map((img, i) => (
             <img
               key={i}
               src={img || "/no-image-available.png"}
@@ -44,7 +51,7 @@ const SingleProductDescriptionPage = () => {
 
         {/* Main image carousel */}
         <div className="md:col-span-5 flex overflow-x-auto custom-scroll rounded-lg">
-          {product.image.map((img, i) => (
+          {product?.images?.map((img, i) => (
             <img
               key={i}
               src={img || "/no-image-available.png"}
@@ -82,11 +89,11 @@ const SingleProductDescriptionPage = () => {
                   {size}
                 </button>
               ))}
-            </div>
+            </div> 
           </div>
 
           {/* Color options */}
-          <div>
+          {/* <div>
             <p className="font-semibold mb-2 text-lg text-black">Select Color:</p>
             <div className="flex gap-2">
               {Object.keys(colorClasses).map((color) => (
@@ -97,11 +104,11 @@ const SingleProductDescriptionPage = () => {
                 ></button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Quantity and Add to Cart */}
           <div className="flex flex-col sm:flex-row justify-evenly items-center">
-            <div className="flex justify center items-center py-4 md:p-0">
+            <div className="flex justify-center items-center py-4 md:p-0">
               <button className="px-3 py-1 bg-amber-300 rounded-l hover:bg-amber-400">-</button>
               <input
                 type="text"
@@ -129,16 +136,17 @@ const SingleProductDescriptionPage = () => {
         {showDescription ? (
           // descriptionSection
           <div className="grid grid-cols-12 mr-2 md:mr-0 md:gap-2 row-span-9  w-full h-96">
-          <ProductDescription product={product} />
+          <ProductDescription product={product} description = {product.description} />
         </div>
         ):(
           // reviewsSection
      <div className="grid grid-cols-12 mr-2 md:mr-0 md:gap-2 row-span-9 w-full h-96 overflow-y-auto">
-          {[1,2,3,4,5,6].map((i) => (
+          {/* {[1,2,3,4,5,6].map((i) => (
              <ProductReviewSection product={product} key={i} />
-          ))}
+          ))} */}
         </div>
-        )}
+        )
+        }
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import {
   ChevronUp,
   ListFilter,
   RefreshCcw,
+  Pencil,
 } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
 import LoadingSpinner from "./LoadingSpinner";
@@ -116,6 +117,13 @@ const ProductsList = () => {
                   )}
                 </div>
               </th>
+               <th scope="col" className="px-2 py-3 text-left tracking-wider">
+                <div
+                  className="flex justify-center cursor-pointer"
+                >
+                  Quantity
+                </div>
+              </th>
               <th scope="col" className="px-2 py-3 text-left tracking-wider">
                 <div
                   className="flex justify-center cursor-pointer"
@@ -138,7 +146,7 @@ const ProductsList = () => {
                     <div className="flex-shrink-0 h-10 w-10">
                       <img
                         className="h-10 w-10 rounded-full object-cover"
-                        src={product.image}
+                        src={product.images[0]}
                         alt={product.name}
                       />
                     </div>
@@ -155,7 +163,14 @@ const ProductsList = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-black">{product.category}</div>
+                  <div className="text-sm text-black">
+                    {product.category}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap relative">
+                  <div className="text-sm text-black">
+                    10
+                    <Pencil size={12} className="absolute top-1 right-1"/>
+                    </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <button

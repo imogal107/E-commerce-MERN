@@ -14,8 +14,8 @@ const productSchema = new mongoose.Schema({
         min:0,
         required:true
     },
-    image:{
-        type:String,
+    images:{
+        type:[String],
         required:[true,"Image is required"]
     },
     category:{

@@ -34,69 +34,108 @@ export const getFeaturedProducts = async (req, res) => {
 };
 
 // export const createProduct = async (req, res) => {
-// 	try {
-// 		const { name, description, price, image, category } = req.body;
+//   try {
+//     const { name, description, price, image, category } = req.body;
 
-// 		let cloudinaryResponse = null;
+//     console.log("Incoming product data:", {
+//       name,
+//       description,
+//       price,
+//       hasImage: !!image,
+//       category,
+//     });
 
-// 		if (image) {
-// 			cloudinaryResponse = await cloudinary.uploader.upload(image, { folder: "products" });
-// 		}
+//     let cloudinaryResponse = null;
 
-// 		const product = await Product.create({
-// 			name,
-// 			description,
-// 			price,
-// 			image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "",
-// 			category,
-// 		});
+//     if (image && image.trim() !== "") {
+//       console.log("Uploading image to Cloudinary...");
+//       for (let i = 0; i < 3; i++) {
+//         try {
+//           console.log("Attempt", i + 1);
+//           cloudinaryResponse = await cloudinary.uploader.upload(image, {
+//             folder: "products",
+//           });
+//           console.log(
+//             "✅ Cloudinary upload success:",
+//             cloudinaryResponse.secure_url
+//           );
+//           break; // stop retrying once it works
+//         } catch (err) {
+//           console.error(`❌ Attempt ${i + 1} failed:`, err.message || err);
+//           if (i === 2) throw err; // only throw after the last attempt
+//         }
+//       }
+//     }
 
-// 		res.status(201).json(product);
-// 	} catch (error) {
-// 		console.log("Error in createProduct controller", error);
-// 		res.status(500).json({ message: "Server error", error: error.message });
-// 	}
+//     const product = await Product.create({
+//       name,
+//       description,
+//       price,
+//       image: cloudinaryResponse?.secure_url || "",
+//       category,
+//     });
+
+//     res.status(201).json(product);
+//   } catch (error) {
+//     console.error("❌ Error in createProduct controller:", error);
+//     res.status(500).json({ message: "Server error", error: error.message });
+//   }
 // };
+
 
 export const createProduct = async (req, res) => {
   try {
-    const { name, description, price, image, category } = req.body;
+    const { name, description, price, images, category } = req.body;
 
     console.log("Incoming product data:", {
       name,
       description,
       price,
-      hasImage: !!image,
+      imageCount: images?.length || 0,
       category,
     });
 
-    let cloudinaryResponse = null;
+    if (!images || !Array.isArray(images) || images.length === 0) {
+      return res.status(400).json({ message: "At least one image is required" });
+    }
 
-    if (image && image.trim() !== "") {
-      console.log("Uploading image to Cloudinary...");
-      for (let i = 0; i < 3; i++) {
-        try {
-          console.log("Attempt", i + 1);
-          cloudinaryResponse = await cloudinary.uploader.upload(image, {
-            folder: "products",
-          });
-          console.log(
-            "✅ Cloudinary upload success:",
-            cloudinaryResponse.secure_url
-          );
-          break; // stop retrying once it works
-        } catch (err) {
-          console.error(`❌ Attempt ${i + 1} failed:`, err.message || err);
-          if (i === 2) throw err; // only throw after the last attempt
+    if (images.length > 4) {
+      return res
+        .status(400)
+        .json({ message: "You can upload up to 4 images only" });
+    }
+
+    // Upload images to Cloudinary
+    const uploadedImages = [];
+    for (let i = 0; i < images.length; i++) {
+      const base64Image = images[i];
+      if (base64Image && base64Image.trim() !== "") {
+        console.log(`Uploading image ${i + 1} to Cloudinary...`);
+        for (let attempt = 0; attempt < 3; attempt++) {
+          try {
+            const cloudRes = await cloudinary.uploader.upload(base64Image, {
+              folder: "products",
+            });
+            console.log(`✅ Uploaded ${i + 1}: ${cloudRes.secure_url}`);
+            uploadedImages.push(cloudRes.secure_url);
+            break;
+          } catch (err) {
+            console.error(
+              `❌ Upload attempt ${attempt + 1} for image ${i + 1} failed:`,
+              err.message || err
+            );
+            if (attempt === 2) throw err; // throw after last attempt
+          }
         }
       }
     }
 
+    // Create product
     const product = await Product.create({
       name,
       description,
       price,
-      image: cloudinaryResponse?.secure_url || "",
+      images: uploadedImages,
       category,
     });
 
@@ -106,6 +145,7 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
 
 export const deleteProduct = async (req, res) => {
   try {
@@ -141,7 +181,7 @@ export const getRecommendedProducts = async (req, res) => {
           _id: 1,
           name: 1,
           description: 1,
-          image: 1,
+          images: 1,
           price: 1,
         },
       },

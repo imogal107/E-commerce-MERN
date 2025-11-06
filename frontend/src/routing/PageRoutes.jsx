@@ -19,6 +19,7 @@ import FooterAdvertise from "../components/FooterAdvertise.jsx"
 import Footer from "../components/Footer.jsx"
 
 import { useUserStore } from "../stores/useUserStore.js"
+import SingleProductDescriptionPage from "../pages/SingleProductDescriptionPage.jsx"
 const PageRoutes = () => {
      const {user } = useUserStore();
  
@@ -37,6 +38,7 @@ const PageRoutes = () => {
         <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/collection" element={<CollectionPage/>} />
+          <Route path="/allproducts" element={<DisplayAllProductsPage/>} />
           <Route path="/signup" element={!user ? <SignUpPage/> : <Navigate to="/" />} />
           <Route path="/login" element={!user ? <LoginPage/> : <Navigate to="/"/>} />
           <Route path="/secret-dashboard" element={user?.role === "admin" ? <AdminPage/> : <Navigate to="/"/>} />
@@ -44,8 +46,7 @@ const PageRoutes = () => {
           <Route path="/cart" element={!user ? <Navigate to="/login"/> : <CartPage/>} />
           <Route path="/purchase-success" element={user ? <PurchaseSuccessPage/> : <Navigate to="/login"/>}/>
           <Route path="/purchase-cancel" element={user ? <PurchaseCancelPage/> : <Navigate to="/login"/>}/>
-          <Route path="/allproducts" element={<DisplayAllProductsPage/>} />
-          <Route path="/product/:id" element={<ProductPage/>} />
+          <Route path="/product/:id" element={<SingleProductDescriptionPage/>} />
         </Routes>
         </div>
         <Footer/>

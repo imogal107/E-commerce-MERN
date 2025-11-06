@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useUserStore } from "../stores/useUserStore.js";
 import { useCartStore } from "../stores/useCartStore.js";
-import { useRefreshOnFocus, useSilentRefresh } from "../hooks/useUpdateAccessToken.js";
+import { useSilentRefresh } from "../hooks/useUpdateAccessToken.js";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 
 const AuthProvider = ({ children }) => {
@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
   const { getCartItems } = useCartStore();
 
   useSilentRefresh();
-  useRefreshOnFocus();
+
 
   useEffect(() => {
     checkAuth();

@@ -1,6 +1,6 @@
-import React from "react";
 
-const ProductDescription = ({ product }) => {
+
+const ProductDescription = ({ description }) => {
   return (
         <>
         <div className="grid grid-rows-12 col-span-3 p-1">
@@ -13,7 +13,7 @@ const ProductDescription = ({ product }) => {
         </div>
         <div className="grid grid-rows-12 col-span-9 p-1 max-h-96 gap-3">
           <div className="flex row-span-8 p-4 items-start justify-center overflow-y-scroll custom-scroll max-h-64 rounded shadow-black/50 backdrop-blur-xl hover:shadow-xs">
-            <p className="text-xs md:text-sm lg:text-lg text-start leading-normal text-black">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iure explicabo blanditiis a eos tempora similique quasi perspiciatis velit accusantium nisi, soluta dicta aut esse, voluptatem nulla commodi ea sapiente. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iure explicabo blanditiis a eos tempora similique quasi perspiciatis velit accusantium nisi, soluta dicta aut esse, voluptatem nulla commodi ea sapiente. Lorem ipsum dolor, sit  amet consectetur adipisicing elit. Dolores iure explicabo cta aut esse, voluptatem nulla commodi ea sapiente. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores iure explicabo blanditiis a eos tempora similique quasi perspiciatis velit accusantium nisi, soluta dicta aut esse, voluptatem nulla commodi ea sapiente. Lorem ipsum dolor, sit  amet consectetur adipisicing elit. Dolores iure explic blanditiis a eos tempora similique quasi perspiciatis velit accusantium nisi, soluta dicta aut esse, voluptatem nulla commodi ea sapiente.
+           <p className="text-xs md:text-sm lg:text-lg text-start leading-normal text-black">{description}
 
             </p>
           </div>
